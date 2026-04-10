@@ -1,0 +1,267 @@
+:root {
+  color-scheme: dark;
+  --bg: #0d0f13;
+  --bg-2: #13161c;
+  --panel: #15191f;
+  --panel-2: #1a1f27;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --text: #f3f0ea;
+  --muted: #9d958a;
+  --brand: #f26a21;
+  --brand-soft: rgba(242, 106, 33, 0.18);
+  --brand-glow: rgba(242, 106, 33, 0.2);
+  --success: #3fd08b;
+  --success-soft: rgba(63, 208, 139, 0.12);
+  --danger: #ff6e61;
+  --danger-soft: rgba(255, 110, 97, 0.14);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 372px;
+  min-height: 272px;
+  font-family: "SF Pro Display", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top center, rgba(242, 106, 33, 0.12), transparent 28%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.shell {
+  min-height: 272px;
+  padding: 20px 20px 18px;
+}
+
+.masthead {
+  display: grid;
+  gap: 8px;
+}
+
+.brand-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-mark {
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-radius: 6px;
+}
+
+.brand-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--brand);
+}
+
+.slogan {
+  margin: 0;
+  max-width: 300px;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.status-panel {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 14px;
+  align-items: start;
+  margin-top: 22px;
+  padding: 16px 16px 17px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%), var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.status-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid var(--border);
+}
+
+.status-icon::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 22px;
+  background: radial-gradient(circle, var(--brand-glow) 0%, transparent 68%);
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.spinner,
+.status-check,
+.status-cross {
+  position: relative;
+  z-index: 1;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(242, 106, 33, 0.16);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.status-check,
+.status-cross {
+  display: none;
+}
+
+.status-copy {
+  padding-top: 2px;
+}
+
+.status-label,
+.status-message {
+  margin: 0;
+}
+
+.status-label {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.status-message {
+  margin-top: 7px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.status-panel[data-state="success"] .status-icon::after {
+  background: radial-gradient(circle, rgba(25, 135, 84, 0.18) 0%, transparent 68%);
+}
+
+.status-panel[data-state="success"] .spinner {
+  display: none;
+}
+
+.status-panel[data-state="success"] .status-check {
+  display: block;
+  width: 20px;
+  height: 12px;
+  margin-top: -2px;
+  border-left: 3px solid var(--success);
+  border-bottom: 3px solid var(--success);
+  transform: rotate(-45deg);
+}
+
+.status-panel[data-state="success"] .status-label {
+  color: var(--success);
+}
+
+.status-panel[data-state="error"] .status-icon::after {
+  background: radial-gradient(circle, rgba(194, 73, 63, 0.18) 0%, transparent 68%);
+}
+
+.status-panel[data-state="error"] .spinner {
+  display: none;
+}
+
+.status-panel[data-state="error"] .status-cross {
+  display: block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.status-panel[data-state="error"] .status-cross::before,
+.status-panel[data-state="error"] .status-cross::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 1px;
+  width: 3px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--danger);
+}
+
+.status-panel[data-state="error"] .status-cross::before {
+  transform: rotate(45deg);
+}
+
+.status-panel[data-state="error"] .status-cross::after {
+  transform: rotate(-45deg);
+}
+
+.status-panel[data-state="error"] .status-label {
+  color: var(--danger);
+}
+
+.preview-card {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 22px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.preview-viewport {
+  max-height: 248px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 16px;
+  scrollbar-gutter: stable;
+  background: #0a0c10;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.preview-viewport::-webkit-scrollbar {
+  width: 8px;
+}
+
+.preview-viewport::-webkit-scrollbar-thumb {
+  background: rgba(242, 106, 33, 0.42);
+  border-radius: 999px;
+}
+
+.preview-viewport::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.preview-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  background: #0a0c10;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

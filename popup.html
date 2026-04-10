@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PageSnap</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <div class="brand-row">
+          <img class="brand-mark" src="assets/icon-32.png" alt="">
+          <span class="brand-name">Page Snap</span>
+        </div>
+        <p class="slogan">一键截取网页全部内容，并复制到剪贴板。</p>
+      </header>
+
+      <section class="status-panel" id="statusCard" data-state="loading" aria-live="polite">
+        <div class="status-icon" aria-hidden="true">
+          <span class="spinner"></span>
+          <span class="status-check"></span>
+          <span class="status-cross"></span>
+        </div>
+        <div class="status-copy">
+          <p class="status-label" id="statusLabel">正在截图</p>
+          <p class="status-message" id="statusMessage">正在滚动页面并拼接整页截图...</p>
+        </div>
+      </section>
+
+      <section class="preview-card" id="previewCard" hidden>
+        <div class="preview-viewport">
+          <img class="preview-image" id="previewImage" alt="截图预览">
+        </div>
+      </section>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
