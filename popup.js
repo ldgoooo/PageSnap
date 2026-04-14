@@ -4,6 +4,8 @@ const statusMessageNode = document.getElementById("statusMessage");
 const previewCard = document.getElementById("previewCard");
 const previewImage = document.getElementById("previewImage");
 const downloadButton = document.getElementById("downloadButton");
+const debugCard = document.getElementById("debugCard");
+const debugOutput = document.getElementById("debugOutput");
 const sloganNode = document.querySelector(".slogan");
 
 const STRINGS = {
@@ -99,6 +101,17 @@ function resetPreview() {
   previewImage.removeAttribute("src");
 }
 
+function renderDebug(debug) {
+  if (!debug) {
+    debugCard.hidden = true;
+    debugOutput.textContent = "";
+    return;
+  }
+
+  debugOutput.textContent = JSON.stringify(debug, null, 2);
+  debugCard.hidden = false;
+}
+
 async function showPreview(dataUrl) {
   const image = new Image();
   image.decoding = "async";
@@ -171,6 +184,7 @@ async function run() {
     });
 
     if (!response?.ok || !response.dataUrl) {
+      renderDebug(response?.debug || null);
       throw new Error(response?.error || text.status.captureError);
     }
 
@@ -179,6 +193,7 @@ async function run() {
     await copyImageToClipboard(blob);
 
     await showPreview(response.dataUrl);
+    renderDebug(response.debug || null);
     setStatusFromKey("success", "success");
   } catch (error) {
     resetPreview();
