@@ -2,7 +2,11 @@
 
 PageSnap 是一个 Chrome 扩展。点击工具栏图标，即可把当前网页的可滚动内容拼成一张 PNG 长图，并自动复制到剪贴板。适合分享长文、记录网页问题，或把完整的页面状态贴进聊天和文档。
 
-**[从 Chrome 网上应用店安装](https://chromewebstore.google.com/detail/pagesnap/ncelpoepimdjddgabjnfaefockakbogb)**
+**PageSnap 已在 Chrome 网上应用店发布。**
+
+安装地址
+
+<https://chromewebstore.google.com/detail/pagesnap/ncelpoepimdjddgabjnfaefockakbogb?hl=zh-CN&utm_source=ext_sidebar>
 
 <img src="assets/pagesnap-preview.png" width="372" alt="PageSnap 截取示例网页后，弹窗显示复制成功和截图预览">
 
